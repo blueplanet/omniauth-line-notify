@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'omniauth/line/notify/version'
+require 'omniauth-line-notify/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "omniauth-line-notify"
-  spec.version       = Omniauth::Line::Notify::VERSION
+  spec.version       = OmniAuthLineNotify::VERSION
   spec.authors       = ["blueplanet"]
   spec.email         = ["erguolinge@gmail.com"]
   spec.summary       = %q{OmniAuth strategy for LineNotify}
