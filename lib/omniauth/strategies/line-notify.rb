@@ -27,6 +27,12 @@ module OmniAuth
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
+
+      def authorize_params
+        super.tap do |params|
+          params[:scope] = 'notify'
+        end
+      end
     end
   end
 end
