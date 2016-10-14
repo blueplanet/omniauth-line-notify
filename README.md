@@ -1,8 +1,7 @@
 # Omniauth::Line::Notify
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/line/notify`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+LINE Notify Strategy for OmniAuth.
+Supports OAuth 2.0 server-side flows. Read the LINE Notify docs for more details: https://notify-bot.line.me/static/pdf/line-notify-api.pdf
 
 ## Installation
 
@@ -22,14 +21,39 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+OmniAuth::Strategies::LineNotify is simply a Rack middleware. Read the OmniAuth docs for detailed instructions: https://github.com/intridea/omniauth.
 
-## Development
+Here's a quick example, adding the middleware to a Rails app in config/initializers/omniauth.rb:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Or, adding the middleware to Devise in config/initializers/devise.rb:
+
+```ruby
+config.omniauth :line_notify, ENV['LINE_NOTIFY_CLIEDNT_ID'], ENV['LINE_NOTIFY_APP_SECRET'], scope: 'notify'
+```
+
+## Auth Hash
+
+Here's an example Auth Hash available in request.env['omniauth.auth']:
+
+```ruby
+{
+  provider: 'line_notify',
+  uid: nil,
+  info: {},
+  credentials: {
+    token: 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
+    expires: false
+  },
+  extra: {}
+}
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-line-notify.
+Bug reports and pull requests are welcome on GitHub at https://github.com/blueplanet/omniauth-line-notify.
