@@ -1,4 +1,6 @@
-# Omniauth::Line::Notify
+# OmniAuth::Line::Notify
+
+[Japanese README](https://github.com/blueplanet/omniauth-line-notify/blob/master/README.ja.md)
 
 LINE Notify Strategy for OmniAuth.
 Supports OAuth 2.0 server-side flows. Read the LINE Notify docs for more details: https://notify-bot.line.me/static/pdf/line-notify-api.pdf
