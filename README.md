@@ -5,6 +5,8 @@ Supports OAuth 2.0 server-side flows. Read the LINE Notify docs for more details
 
 ## Installation
 
+**Warning: Now LINE Notify can`t get the uid, so you can't use the LINE Notify in user login feture, only send notify**
+
 Add this line to your application's Gemfile:
 
 ```ruby
