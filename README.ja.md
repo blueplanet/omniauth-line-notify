@@ -2,7 +2,7 @@
 
 [英語版 README](https://github.com/blueplanet/omniauth-line-notify/blob/master/README.md)
 
-LINE Notify の OmniAuth .
+LINE Notify の OmniAuth ストラテジー.
 OAuth 2.0でのサーバーサイド認証フローサポート。他の情報は LINE Notify のドキュメントをご参照ください: https://notify-bot.line.me/static/pdf/line-notify-api_ja.pdf
 
 ## インストール
