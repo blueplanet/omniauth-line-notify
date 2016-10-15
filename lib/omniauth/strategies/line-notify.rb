@@ -23,19 +23,15 @@ module OmniAuth
 
       # Require: Access token with PROFILE permission issued.
       def raw_info
-        @raw_info ||= JSON.load(access_token.get('v1/profile').body)
+        @raw_info ||= {}
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
 
       protected
 
-      def build_access_token
-        logger.debug "======> BUILD ACCESS TOKEN"
-        puts "======> BUILD ACCESS TOKEN"
-        verifier = request.params["code"]
-        puts verifier
-        client.auth_code.get_token(verifier, {:redirect_uri => callback_url}.merge(token_params.to_hash(:symbolize_keys => true)), deep_symbolize(options.auth_token_params))
+      def callback_url
+        full_host + script_name + callback_path
       end
     end
   end
