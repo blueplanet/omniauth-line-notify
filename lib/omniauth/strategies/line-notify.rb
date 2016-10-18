@@ -6,7 +6,7 @@ module OmniAuth
     class LineNotify < OmniAuth::Strategies::OAuth2
       option :name, 'line_notify'
 
-      option :client_options, {:site  => 'https://notify-bot.line.me/',
+      option :client_options, {:site  => 'https://notify-bot.line.me',
                                :authorize_url => '/oauth/authorize',
                                :token_url     => '/oauth/token',
                                :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil}
@@ -16,6 +16,8 @@ module OmniAuth
           params[:scope] = 'notify'
         end
       end
+
+      protected
 
       def callback_url
         full_host + script_name + callback_path
