@@ -11,21 +11,10 @@ module OmniAuth
                                :token_url     => '/oauth/token',
                                :proxy => ENV['http_proxy'] ? URI(ENV['http_proxy']) : nil}
 
-      uid { raw_info['mid'] }
-
-      info do
-        {
-          name:        raw_info['displayName'],
-          image:       raw_info['pictureUrl'],
-          description: raw_info['statusMessage']
-        }
-      end
-
-      # Require: Access token with PROFILE permission issued.
-      def raw_info
-        @raw_info ||= {}
-      rescue ::Errno::ETIMEDOUT
-        raise ::Timeout::Error
+      def authorize_params
+        super.tap do |params|
+          params[:scope] = 'notify'
+        end
       end
 
       protected
